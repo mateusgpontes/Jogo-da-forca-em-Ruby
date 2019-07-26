@@ -55,22 +55,27 @@ def jogar(nome)
   while erros < tentativa
     chute = pede_chute(chutes, erros)
     chutes << chute
+    chutou_uma_letra = chute.size == 1
 
-    if chute.size == 1
+    if chutou_uma_letra
       procura_letra = chute[0]
       total_encontrado = 0
             
       for i in 0..(palavra_secreta.size - 1)
         if palavra_secreta[i] == procura_letra
+          pontos = pontos + 5
           total_encontrado = total_encontrado + 1
         end
       end
 
       if total_encontrado != 0
+        puts "Você ganhou 5 pontos por cada letra encontrada"
         puts "Foram encontradas #{total_encontrado} letras."
       else    
         puts "Nenhuma letra encontrada"
-          erros = erros + 1
+        puts "Você perdeu 5 pontos"
+        pontos = pontos - 5
+        erros = erros + 1
       end
 
     elsif chute == palavra_secreta
