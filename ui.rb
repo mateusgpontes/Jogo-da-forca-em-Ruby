@@ -62,8 +62,9 @@ def jogar_novamente?
   end
 end
   
-def pede_chute(chutes, erros, tenta)
+def pede_chute(chutes, erros, tenta, mascara)
   puts "\n"
+  puts "Palavras secreta: #{mascara}"
   puts "Erros até agora #{erros}/#{tenta}"
   puts "\n"
   puts "Chutes até agora #{chutes}"

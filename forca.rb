@@ -10,6 +10,18 @@ def conta_letra(palavra, letra)
   total
 end
 
+def palavra_mascara(chutes, palavra_secreta)
+  mascara = ""
+  for letra in palavra_secreta.chars
+    if chutes.include?(letra)
+      mascara << letra
+    else
+      mascara << "_"
+    end
+  end
+  mascara
+end
+
 def jogar(nome)
 
   palavra_secreta = escolhe_palavra_secreta
@@ -20,7 +32,8 @@ def jogar(nome)
   pontos = 0
 
   while erros < tentativa
-    chute = pede_chute(chutes, erros, tentativa)
+    mascara = palavra_mascara(chutes, palavra_secreta)
+    chute = pede_chute(chutes, erros, tentativa, mascara)
 
     if chutes.include?(chute)
       chutou_o_mesmo
