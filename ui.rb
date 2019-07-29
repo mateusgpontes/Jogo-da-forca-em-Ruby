@@ -29,7 +29,6 @@ def errou_palavra_menos_30
   puts "\n"
 end
 
-
 def boas_vindas
   puts "Bem vindo ao jogo da forca"
   puts "Qual é o seu nome?"
@@ -38,16 +37,6 @@ def boas_vindas
   puts "\n\n"
   puts "Bem vindo ao jogo #{nome}."
   nome
-end
-  
-def escolhe_palavra_secreta
-  puts "Escolhendo uma palavra..."
-  palavra = "programar"
-  puts "Palavra escolida."
-  puts "A palavra escolida tem #{palavra.size} letras."
-  puts "\n"
-
-  palavra
 end
   
 def jogar_novamente?
@@ -70,10 +59,18 @@ def pede_chute(chutes, erros, tenta, mascara)
   puts "Chutes até agora #{chutes}"
   puts "\n"
   puts "Entre com uma letra ou palavra"
-  chute = gets.strip
+  chute = gets.strip.downcase
   puts "\n"
   puts "Você chutou #{chute}"
   puts "\n"
   
   chute
+end
+
+def escolhendo_palavra(palavra)
+  puts "Escolhendo uma palavra..."
+  puts "Palavra escolida."
+  puts "A palavra escolida tem #{palavra.size} letras."
+  puts "\n"
+  palavra
 end

@@ -1,5 +1,27 @@
 require_relative "ui"
 
+
+#Modo que usa mais memoria
+def escolhe_palavra_secreta
+  palavras = File.read("dicionario.txt")
+  todas_as_palavras = palavras.split("\n")
+  percorre_dicionario = rand(todas_as_palavras.size)
+  palavra_secreta = todas_as_palavras[percorre_dicionario].downcase
+  escolhendo_palavra(palavra_secreta)
+end
+
+def escolhe_palavra_secreta_sem_muita_memoria
+  palavras = File.new("dicionario.txt")
+  todas_as_palavras = palavras.gets.to_i
+  percorre_dicionario = rand(todas_as_palavras)
+  for linha in 1..(percorre_dicionario)
+    palavras.gets
+  end
+  palavra_secreta = palavras.gets.strip.downcase
+  palavras.close
+  escolhendo_palavra(palavra_secreta)
+end
+
 def conta_letra(palavra, letra)
   total = 0
   for caractere in palavra.chars
@@ -24,7 +46,7 @@ end
 
 def jogar(nome)
 
-  palavra_secreta = escolhe_palavra_secreta
+  palavra_secreta = escolhe_palavra_secreta_sem_muita_memoria
 
   erros = 0
   tentativa = 5
