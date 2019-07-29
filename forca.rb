@@ -1,5 +1,14 @@
 require_relative "ui"
 
+def salva_rank(nome, pontos_totais)
+  conteudo = "#{nome}, #{pontos_totais}"
+  File.write("rank.txt", conteudo)
+end
+
+def rank
+  conteudo = File.read "rank.txt"
+  conteudo.split("\n")
+end
 
 #Modo que usa mais memoria
 def escolhe_palavra_secreta
@@ -14,7 +23,7 @@ def escolhe_palavra_secreta_sem_muita_memoria
   palavras = File.new("dicionario.txt")
   todas_as_palavras = palavras.gets.to_i
   percorre_dicionario = rand(todas_as_palavras)
-  for linha in 1..(percorre_dicionario)
+  for linha in 1..(percorre_dicionario - 1)
     palavras.gets
   end
   palavra_secreta = palavras.gets.strip.downcase
@@ -44,9 +53,9 @@ def palavra_mascara(chutes, palavra_secreta)
   mascara
 end
 
-def jogar(nome)
+def jogar
 
-  palavra_secreta = escolhe_palavra_secreta_sem_muita_memoria
+  palavra_secreta = escolhe_palavra_secreta
 
   erros = 0
   tentativa = 5
@@ -89,15 +98,22 @@ def jogar(nome)
       erros = erros + 1
       errou_palavra_menos_30           
     end   
-      pontos_ate_agora(pontos)
+    pontos_ate_agora(pontos)
   end
+  pontos
 end
 
 def jogo
   nome = boas_vindas
+  pontos_totais = 0
 
   loop do
-    jogar(nome)
+    pontos_totais = pontos_totais + jogar
+    avisa_pontos_totais(pontos_totais)
+    if rank[1].to_i < pontos_totais
+      salva_rank(nome, pontos_totais)
+    end
+    list_rank(rank)
     if !jogar_novamente?
       break
     end

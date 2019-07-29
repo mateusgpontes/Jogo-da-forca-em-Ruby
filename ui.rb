@@ -1,9 +1,15 @@
+def list_rank(rank)
+  puts "Melhor Rank foi do"
+  puts "#{rank}"
+end
+
 def chutou_o_mesmo
   puts "Você já chutou essa letra"
 end
 
 def pontos_ate_agora(pontos)
-  puts "Você tem #{pontos} pontos até agora"
+  puts "Você fez #{pontos} pontos até agora"
+  pontos
 end
 
 def errou_letra_menos_5
@@ -46,8 +52,10 @@ def jogar_novamente?
   case jogar.upcase
   when "S"
     jogar = true
-  else
+  when "N"
     jogar = false
+  else
+    jogar_novamente?
   end
 end
   
@@ -73,4 +81,8 @@ def escolhendo_palavra(palavra)
   puts "A palavra escolida tem #{palavra.size} letras."
   puts "\n"
   palavra
+end
+
+def avisa_pontos_totais(pontos_totais)
+  puts "Você tem #{pontos_totais} pontos no total"
 end
