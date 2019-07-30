@@ -1,6 +1,11 @@
+def passou_rank(melhor)
+  puts "Você passou o rank do #{melhor}"
+end
+
 def list_rank(rank)
-  puts "Melhor Rank foi do"
-  puts "#{rank}"
+  puts "\n"
+  puts "Melhor Rank foi do #{rank[0]} com #{rank[1]} pontos"
+  puts "\n"
 end
 
 def chutou_o_mesmo

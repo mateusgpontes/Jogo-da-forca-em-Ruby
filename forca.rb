@@ -1,14 +1,7 @@
+require "pry"
+require "pry-nav"
 require_relative "ui"
-
-def salva_rank(nome, pontos_totais)
-  conteudo = "#{nome}, #{pontos_totais}"
-  File.write("rank.txt", conteudo)
-end
-
-def rank
-  conteudo = File.read "rank.txt"
-  conteudo.split("\n")
-end
+require_relative "rank"
 
 #Modo que usa mais memoria
 def escolhe_palavra_secreta
@@ -106,14 +99,22 @@ end
 def jogo
   nome = boas_vindas
   pontos_totais = 0
-
+  
   loop do
+
+    list_rank(rank)    
     pontos_totais = pontos_totais + jogar
     avisa_pontos_totais(pontos_totais)
-    if rank[1].to_i < pontos_totais
+
+    if rank[1].to_i < pontos_totais   
+      passou_rank(rank)
+      puts "salvo"
       salva_rank(nome, pontos_totais)
+      list_rank(rank)
+    else
+      list_rank(rank)
     end
-    list_rank(rank)
+
     if !jogar_novamente?
       break
     end
