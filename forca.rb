@@ -96,6 +96,26 @@ def jogar
   pontos
 end
 
+def verifica_jogar_denovo(joga, sim, nao)
+
+  case joga.upcase
+  when sim
+    joga = true
+  when nao
+    joga = false
+  else
+    jogar_novamente?
+  end
+end
+
+def erros_corpo (erros, i, peca, desenho)
+
+  if erros >= i
+    peca = desenho
+  end
+
+end
+
 def jogo
   nome = boas_vindas
   pontos_totais = 0
